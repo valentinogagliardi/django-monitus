@@ -11,6 +11,7 @@ django-monitus
 Tiny error reporting middleware(s) for Django. Includes the following middlewares:
 
 - ``Error403EmailsMiddleware``: sends an email to ``ADMINS`` on 403.
+- ``FailedLoginMiddleware``: sends an email to ``ADMINS`` on failed logins.
 
 Requirements
 ------------
