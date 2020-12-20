@@ -5,7 +5,7 @@ django-monitus
 .. image:: https://img.shields.io/twitter/follow/gagliardi_vale?style=social
    :target: https://twitter.com/gagliardi_vale
 
-.. image:: https://github.com/valentinogagliardi/django-monitus/workflows/Test%20suite/badge.svg
+.. image:: https://github.com/valentinogagliardi/django-monitus/workflows/Tox%20tests/badge.svg
    :target: https://github.com/valentinogagliardi/django-monitus/actions
 
 Tiny error reporting middleware(s) for Django.
