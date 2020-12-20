@@ -8,7 +8,9 @@ django-monitus
 .. image:: https://github.com/valentinogagliardi/django-monitus/workflows/Tox%20tests/badge.svg
    :target: https://github.com/valentinogagliardi/django-monitus/actions
 
-Tiny error reporting middleware(s) for Django.
+Tiny error reporting middleware(s) for Django. Includes the following middlewares:
+
+- ``Error403EmailsMiddleware``: sends an email to ``ADMINS`` on failed logins.
 
 Requirements
 ------------
