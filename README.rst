@@ -22,11 +22,13 @@ Setup
 Install from pip:
 
 .. code-block:: sh
+
     python -m pip install django-monitus
 
 Then add it to the list of installed apps:
 
 .. code-block:: python
+
     INSTALLED_APPS = [
     ...
     "monitus"
@@ -36,6 +38,7 @@ Then add it to the list of installed apps:
 Enable the desired middleware:
 
 .. code-block:: python
+
     MIDDLEWARE = [
     ...
     "monitus.middleware.Error403EmailsMiddleware"
@@ -45,4 +48,5 @@ Enable the desired middleware:
 Setup either ``ADMINS`` or ``MANAGERS`` in your settings:
 
 .. code-block:: python
+
     MANAGERS = [("Juliana C.", "juliana.crain@dev.io")]
