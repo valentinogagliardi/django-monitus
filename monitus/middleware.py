@@ -1,6 +1,6 @@
 from http import HTTPStatus
 from django.conf import settings
-from django.core.mail import mail_managers
+from django.core.mail import mail_admins
 
 
 class Error403EmailsMiddleware:
@@ -10,5 +10,5 @@ class Error403EmailsMiddleware:
     def __call__(self, request):
         response = self.get_response(request)
         if response.status_code == HTTPStatus.FORBIDDEN and not settings.DEBUG:
-            mail_managers("Got 403!", "Message: 403")
+            mail_admins("Got 403!", "Message: 403")
         return response
