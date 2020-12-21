@@ -21,6 +21,10 @@ class Error403EmailsMiddleware(TestCase):
         self.assertIn(self.user.username, body)
         self.assertIn(self.user.email, body)
 
+    def test_it_handles_anon_user(self):
+        self.client.logout()
+        self.client.get("/secret-area/")
+
 
 class FailedLoginMiddlewareTest(SimpleTestCase):
     def test_it_sends_email_to_admins(self):
