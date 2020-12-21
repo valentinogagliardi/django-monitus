@@ -9,11 +9,11 @@ def secret(request):
 
 def login(request):
     response = HttpResponse()
-    form = AuthenticationForm(request.POST)
-    form.error_messages = {
-        "invalid_login": "Please enter a correct username and password. Note that both fields may be case-sensitive."
-    }
-    setattr(response, "context_data", {"form": form})
+    if request.user.is_authenticated:
+        return response
+    if request.method == "POST":
+        form = AuthenticationForm(request.POST)
+        setattr(response, "context_data", {"form": form})
     return response
 
 
