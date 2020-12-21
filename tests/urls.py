@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm
 
 
-def index(request):
+def secret(request):
     return HttpResponse("For testing.", status=403)
 
 
@@ -18,6 +18,6 @@ def login(request):
 
 
 urlpatterns = [
-    path("", index),
+    path("secret-area/", secret),
     path("login/", login),
 ]

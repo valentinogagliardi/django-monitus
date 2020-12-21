@@ -10,7 +10,14 @@ class Error403EmailsMiddleware:
     def __call__(self, request):
         response = self.get_response(request)
         if response.status_code == HTTPStatus.FORBIDDEN and not settings.DEBUG:
-            mail_admins("Got 403!", "Message: 403")
+            path = request.get_full_path()
+            ip = request.META.get("REMOTE_ADDR", "<none>")
+            user = request.user
+            mail_admins(
+                "Got 403!",
+                f"Got error 403 on {path} from {ip}. User: {user.username} - {user.email}",
+                fail_silently=True,
+            )
         return response
 
 
