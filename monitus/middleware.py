@@ -1,5 +1,6 @@
 from http import HTTPStatus
 from django.conf import settings
+from django.contrib.auth.forms import AuthenticationForm
 from django.core.mail import mail_admins
 
 
@@ -27,10 +28,9 @@ class FailedLoginMiddleware:
 
     def __call__(self, request):
         response = self.get_response(request)
-        if not hasattr(response, "context_data"):
-            return response
-        if "form" in response.context_data:
-            if "invalid_login" in response.context_data["form"].error_messages:
+        try:
+            form = response.context_data["form"]
+            if isinstance(form, AuthenticationForm) and form.error_messages:
                 path = request.get_full_path()
                 ip = request.META.get("REMOTE_ADDR", "<none>")
                 mail_admins(
@@ -38,4 +38,6 @@ class FailedLoginMiddleware:
                     f"Failed login attempt from {ip} on {path}.",
                     fail_silently=True,
                 )
+        except AttributeError:
+            pass
         return response

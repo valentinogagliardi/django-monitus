@@ -17,7 +17,14 @@ def login(request):
     return response
 
 
+def ticket_create(request):
+    response = HttpResponse()
+    setattr(response, "context_data", {"form": None})
+    return response
+
+
 urlpatterns = [
     path("secret-area/", secret),
     path("login/", login),
+    path("tickets/", ticket_create),
 ]
