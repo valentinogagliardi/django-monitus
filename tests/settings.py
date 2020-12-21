@@ -17,3 +17,6 @@ MIDDLEWARE = [
 ]
 ADMINS = [("Juliana C.", "juliana.crain@dev.io")]
 EMAIL_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
+TEMPLATES = [
+    {"BACKEND": "django.template.backends.django.DjangoTemplates", "DIRS": ["./tests"]}
+]

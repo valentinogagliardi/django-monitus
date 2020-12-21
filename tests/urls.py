@@ -1,20 +1,15 @@
+from django.contrib.auth.views import LoginView
 from django.urls import path
 from django.http import HttpResponse
-from django.contrib.auth.forms import AuthenticationForm
 
 
 def secret(request):
     return HttpResponse("For testing.", status=403)
 
 
-def login(request):
-    response = HttpResponse()
-    if request.user.is_authenticated:
-        return response
-    if request.method == "POST":
-        form = AuthenticationForm(request.POST)
-        setattr(response, "context_data", {"form": form})
-    return response
+class Login(LoginView):
+    redirect_authenticated_user = True
+    template_name = "login.html"
 
 
 def ticket_create(request):
@@ -35,7 +30,7 @@ def without_context_data(request):
 
 urlpatterns = [
     path("secret-area/", secret),
-    path("login/", login),
+    path("login/", Login.as_view()),
     path("tickets/", ticket_create),
     path("without-form/", without_form),
     path("without-context-data/", without_context_data),
