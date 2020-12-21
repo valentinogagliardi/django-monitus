@@ -34,3 +34,9 @@ class FailedLoginMiddlewareTest(SimpleTestCase):
     def test_it_handles_only_authentication_form_errors(self):
         self.client.post("/tickets/", {"subject": "Website instable"})
         self.assertFalse(mail.outbox)
+
+    def test_it_handles_functional_views_without_forms(self):
+        self.client.get("/without-form/")
+
+    def test_it_handles_functional_views_without_context_data(self):
+        self.client.get("/without-context-data/")

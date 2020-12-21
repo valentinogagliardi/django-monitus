@@ -29,7 +29,7 @@ class FailedLoginMiddleware:
     def __call__(self, request):
         response = self.get_response(request)
         try:
-            form = response.context_data["form"]
+            form = response.context_data.get("form")
             if isinstance(form, AuthenticationForm) and form.error_messages:
                 path = request.get_full_path()
                 ip = request.META.get("REMOTE_ADDR", "<none>")

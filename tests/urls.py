@@ -23,8 +23,20 @@ def ticket_create(request):
     return response
 
 
+def without_form(request):
+    response = HttpResponse()
+    setattr(response, "context_data", {})
+    return response
+
+
+def without_context_data(request):
+    return HttpResponse("For testing")
+
+
 urlpatterns = [
     path("secret-area/", secret),
     path("login/", login),
     path("tickets/", ticket_create),
+    path("without-form/", without_form),
+    path("without-context-data/", without_context_data),
 ]
