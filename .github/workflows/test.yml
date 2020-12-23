@@ -38,4 +38,5 @@ jobs:
       - name: Test with tox
         env:
           TOX_ENV: ${{ format('py{0}-django{1}', matrix.python-version, matrix.django) }}
+          DATABASE_URL: postgres://postgres:postgres@localhost/postgres
         run: tox -e $TOX_ENV

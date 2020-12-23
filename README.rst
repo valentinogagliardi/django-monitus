@@ -62,3 +62,9 @@ To test on your local machine with Postgres, make sure to have a role with enoug
 .. code-block:: bash
 
     CREATE ROLE monitustestuser WITH LOGIN PASSWORD 'monitustestpassword' CREATEDB;
+
+Then run
+
+.. code-block:: bash
+
+    DATABASE_URL=postgres://monitustestuser:monitustestpassword@localhost/monitustestdb tox
