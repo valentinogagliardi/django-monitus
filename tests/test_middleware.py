@@ -1,7 +1,21 @@
 import pytest
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.core import mail
 from model_bakery import baker
+
+LOCMEM_BACKEND = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "OPTIONS": {
+            "loaders": [
+                (
+                    "django.template.loaders.locmem.Loader",
+                    {"login.html": "<body><body>"},
+                )
+            ]
+        },
+    }
+]
 
 
 class Error403EmailsMiddleware(TestCase):
@@ -27,6 +41,7 @@ class Error403EmailsMiddleware(TestCase):
         self.client.get("/secret-area/")
 
 
+@override_settings(TEMPLATES=LOCMEM_BACKEND)
 class FailedLoginMiddlewareTest(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -56,6 +71,7 @@ class FailedLoginMiddlewareTest(TestCase):
         self.client.get("/without-context-data/")
 
 
+@override_settings(TEMPLATES=LOCMEM_BACKEND)
 @pytest.mark.django_db
 @pytest.mark.parametrize(
     "method, expected", [("get", 0), ("head", 0), ("trace", 0), ("options", 0)]
