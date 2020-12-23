@@ -2,4 +2,5 @@ django
 pytest
 pytest-django
 pytest-pythonpath
+psycopg2-binary
 model-bakery

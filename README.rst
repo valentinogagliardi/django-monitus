@@ -53,3 +53,12 @@ Setup ``ADMINS`` in your settings:
 .. code-block:: python
 
     MANAGERS = [("Juliana C.", "juliana.crain@dev.io")]
+
+Development and testing
+-----------------------
+
+To test on your local machine with Postgres, make sure to have a role with enough privileges:
+
+.. code-block:: bash
+
+    CREATE ROLE monitustestuser WITH LOGIN PASSWORD 'monitustestpassword' CREATEDB;

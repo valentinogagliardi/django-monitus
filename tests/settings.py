@@ -1,6 +1,19 @@
+import os
+
 DEBUG = False
 SECRET_KEY = "NOT_SO_SECRET"
-DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3"}}
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "USER": "postgres",
+        "NAME": "postgres",
+        "PASSWORD": "postgres",
+        "HOST": "localhost",
+        "PORT": "5432",
+    }
+}
+
 ROOT_URLCONF = "tests.urls"
 INSTALLED_APPS = [
     "django.contrib.contenttypes",
