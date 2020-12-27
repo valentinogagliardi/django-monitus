@@ -1,5 +1,6 @@
 django
 pytest
+pytest-asyncio
 pytest-django
 pytest-pythonpath
 psycopg2-binary
